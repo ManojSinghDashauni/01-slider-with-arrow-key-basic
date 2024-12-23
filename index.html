@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider with arrow key</title>
+    <style>
+      body {
+        overflow: hidden;
+        background-color: yellowgreen;
+      }
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 1000px;
+        height: 600px;
+      }
+      .slider {
+        width: max-content;
+      }
+      .item {
+        width: 400px;
+        height: 300px;
+        display: inline-block;
+        background-size: 120%;
+        object-fit: cover;
+        background-repeat: no-repeat;
+        position: absolute;
+        z-index: 1;
+        transition: all 500ms;
+        background-position: center;
+      }
+
+      .item:nth-child(1) {
+        transform: translate(-150%);
+        opacity: 0;
+      }
+      .item:nth-child(2) {
+        transform: translate(-40%);
+      }
+      .item:nth-child(3) {
+        transform: translate(70%);
+      }
+      .item:nth-child(4) {
+        transform: translate(180%);
+      }
+      .item:nth-child(N + 5) {
+        transform: translate(290%);
+        opacity: 0;
+      }
+
+      .item:hover {
+        background-size: 160%;
+      }
+
+      .buttons {
+        z-index: 10;
+        position: absolute;
+        top: 80%;
+        left: 40%;
+        transform: translate(-50% -50%);
+      }
+
+      .buttons button {
+        font-size: 48px;
+        background: none;
+        border: none;
+      }
+
+      .text {
+        font-size: 48px;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text">
+        <div>hello world</div>
+        <div>how are you?</div>
+      </div>
+      <div id="slider">
+        <div
+          class="item"
+          style="
+            background-image: url('https://images.pexels.com/photos/18642133/pexels-photo-18642133/free-photo-of-prague-castle-in-evening.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          "
+        ></div>
+        <div
+          class="item"
+          style="
+            background-image: url('https://images.pexels.com/photos/12393047/pexels-photo-12393047.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          "
+        ></div>
+        <div
+          class="item"
+          style="
+            background-image: url('https://images.pexels.com/photos/14809081/pexels-photo-14809081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          "
+        ></div>
+        <div
+          class="item"
+          style="
+            background-image: url('https://images.pexels.com/photos/16285134/pexels-photo-16285134/free-photo-of-castle-by-the-river-in-prague.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          "
+        ></div>
+        <div
+          class="item"
+          style="
+            background-image: url('https://images.pexels.com/photos/4610293/pexels-photo-4610293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          "
+        ></div>
+      </div>
+      <div class="buttons">
+        <button id="prev">⬅️</button>
+        <button id="next">➡️</button>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("next").addEventListener("click", function () {
+        let lists = document.querySelectorAll(".item");
+        const slider = document.getElementById("slider");
+        slider.appendChild(lists[0]);
+      });
+
+      document.getElementById("prev").onclick = function () {
+        let lists = document.querySelectorAll(".item");
+        const slider = document.getElementById("slider");
+        slider.prepend(lists[lists.length - 1]);
+      };
+
+      document.addEventListener("keydown", (event) => {
+        console.log(event);
+        if (event.key === "ArrowRight") {
+          let lists = document.querySelectorAll(".item");
+          const slider = document.getElementById("slider");
+          slider.appendChild(lists[0]);
+        } else if (event.key === "ArrowLeft") {
+          let lists = document.querySelectorAll(".item");
+          const slider = document.getElementById("slider");
+          slider.prepend(lists[lists.length - 1]);
+        }
+      });
+    </script>
+  </body>
+</html>
