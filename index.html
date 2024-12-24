@@ -3,56 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Slider with arrow key</title>
+    <title>Slider2 with arrow key</title>
     <style>
       body {
         overflow: hidden;
-        background-color: yellowgreen;
+        background-color: rgb(50, 169, 205);
       }
       .container {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
         width: 1000px;
+        transform: translate(-50%, -50%);
         height: 600px;
+        background: #000;
       }
       .slider {
         width: max-content;
+        /* height: 600px; */
       }
       .item {
-        width: 400px;
+        width: 200px;
         height: 300px;
+        background-position: center;
         display: inline-block;
-        background-size: 120%;
-        object-fit: cover;
+        transition: all 500ms;
+        background-size: cover;
         background-repeat: no-repeat;
         position: absolute;
         z-index: 1;
-        transition: all 500ms;
-        background-position: center;
+        top: 50%;
+        transform: translate(0, -50%);
+        border-radius: 20px;
+        box-shadow: 0px 30px 50px black;
       }
 
-      .item:nth-child(1) {
-        transform: translate(-150%);
-        opacity: 0;
-      }
+      .item:nth-child(1),
       .item:nth-child(2) {
-        transform: translate(-40%);
+        left: 0;
+        top: 0;
+        transform: translate(0, 0);
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0px 30px 50px rgb(0, 69, 90);
       }
       .item:nth-child(3) {
-        transform: translate(70%);
+        left: 50%;
       }
       .item:nth-child(4) {
-        transform: translate(180%);
+        left: 75%;
       }
-      .item:nth-child(N + 5) {
-        transform: translate(290%);
+      .item:nth-child(5) {
+        left: 100%;
+      }
+      .item:nth-child(N + 6) {
+        left: 125%;
         opacity: 0;
-      }
-
-      .item:hover {
-        background-size: 160%;
       }
 
       .buttons {
@@ -67,12 +74,6 @@
         font-size: 48px;
         background: none;
         border: none;
-      }
-
-      .text {
-        font-size: 48px;
-        text-align: center;
-        margin-bottom: 40px;
       }
     </style>
   </head>
@@ -113,6 +114,12 @@
             background-image: url('https://images.pexels.com/photos/4610293/pexels-photo-4610293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
           "
         ></div>
+        <div
+          class="item"
+          style="
+            background-image: url('https://images.pexels.com/photos/14809081/pexels-photo-14809081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          "
+        ></div>
       </div>
       <div class="buttons">
         <button id="prev">⬅️</button>
@@ -121,17 +128,21 @@
     </div>
 
     <script>
-      document.getElementById("next").addEventListener("click", function () {
+      function appand() {
         let lists = document.querySelectorAll(".item");
         const slider = document.getElementById("slider");
         slider.appendChild(lists[0]);
-      });
+      }
 
-      document.getElementById("prev").onclick = function () {
+      function prepend() {
         let lists = document.querySelectorAll(".item");
         const slider = document.getElementById("slider");
         slider.prepend(lists[lists.length - 1]);
-      };
+      }
+
+      document.getElementById("next").addEventListener("click", appand);
+
+      document.getElementById("prev").onclick = prepend;
 
       document.addEventListener("keydown", (event) => {
         console.log(event);
