@@ -3,63 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Slider2 with arrow key</title>
+    <title>Slider with arrow key</title>
     <style>
       body {
         overflow: hidden;
-        background-color: rgb(50, 169, 205);
+        background-color: yellowgreen;
       }
       .container {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 1000px;
         transform: translate(-50%, -50%);
+        width: 1000px;
         height: 600px;
-        background: #000;
       }
       .slider {
         width: max-content;
-        /* height: 600px; */
       }
       .item {
-        width: 200px;
+        width: 400px;
         height: 300px;
-        background-position: center;
         display: inline-block;
-        transition: all 500ms;
-        background-size: cover;
+        background-size: 120%;
+        object-fit: cover;
         background-repeat: no-repeat;
         position: absolute;
         z-index: 1;
-        top: 50%;
-        transform: translate(0, -50%);
-        border-radius: 20px;
-        box-shadow: 0px 30px 50px black;
+        transition: all 500ms;
+        background-position: center;
       }
 
-      .item:nth-child(1),
+      .item:nth-child(1) {
+        transform: translate(-150%);
+        opacity: 0;
+      }
       .item:nth-child(2) {
-        left: 0;
-        top: 0;
-        transform: translate(0, 0);
-        border-radius: 0;
-        width: 100%;
-        height: 100%;
-        box-shadow: 0px 30px 50px rgb(0, 69, 90);
+        transform: translate(-40%);
       }
       .item:nth-child(3) {
-        left: 50%;
+        transform: translate(70%);
       }
       .item:nth-child(4) {
-        left: 75%;
+        transform: translate(180%);
       }
-      .item:nth-child(5) {
-        left: 100%;
-      }
-      .item:nth-child(N + 6) {
-        left: 125%;
+      .item:nth-child(N + 5) {
+        transform: translate(290%);
         opacity: 0;
+      }
+
+      .item:hover {
+        background-size: 160%;
       }
 
       .buttons {
@@ -74,6 +67,12 @@
         font-size: 48px;
         background: none;
         border: none;
+      }
+
+      .text {
+        font-size: 48px;
+        text-align: center;
+        margin-bottom: 40px;
       }
     </style>
   </head>
@@ -112,12 +111,6 @@
           class="item"
           style="
             background-image: url('https://images.pexels.com/photos/4610293/pexels-photo-4610293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-          "
-        ></div>
-        <div
-          class="item"
-          style="
-            background-image: url('https://images.pexels.com/photos/14809081/pexels-photo-14809081.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
           "
         ></div>
       </div>
